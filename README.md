@@ -5,9 +5,10 @@ files/configs to help dockerize apps
 the `.bashrc` file sets up some useful bash shortcuts.
 
 ## Dockerfile
-the provided `Dockerfile` allow the running of a local node server inside a dockerized 'clean room'
+the provided `Dockerfile` allows the running of a local node server inside a dockerized 'clean room'
 
-To build the image. (cd to the root of your project)
+To build the image. (copy the Dockerfile to the root of your project, and `cd` into the project root.) or replace the `.` with the full path to the Dockerfile.
+
 ```
 $ docker build . -t <PROJECT-NAME>
 ```
