@@ -7,14 +7,14 @@ the `.bashrc` file sets up some useful bash shortcuts.
 ## Dockerfile
 the provided `Dockerfile` allow the running of a local node server inside a dockerized 'clean room'
 
-To build the image.
+To build the image. (cd to the root of your project)
 ```
 $ docker build . -t <PROJECT-NAME>
 ```
 The image will be built and the current folder will be copied into image,
 then run the image with the following command
 ```
-$ docker run -P -v ${pwd} /server -t <PROJECT-NAME>
+$ docker run -P -t <PROJECT-NAME>
 ```
 
 if you want to use your local files instead of those copied in when the image was created use
