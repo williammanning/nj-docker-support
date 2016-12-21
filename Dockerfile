@@ -5,7 +5,9 @@ FROM mhart/alpine-node:6
 # 6, 6.9, 6.9.2 – 49.65 MB (npm 3.10.10)
 # 4, 4.7, 4.7.0 – 36.82 MB (npm 2.15.11)
 
-RUN apk add --no-cache htop bash curl vim nano figlet git 
+RUN apk add --no-cache htop bash curl vim nano figlet git
+RUN adduser -S server
+
 RUN npm install pm2 -g --depth=0
 
 # npm-cli-login supports the following environment varibles.
@@ -19,17 +21,21 @@ RUN npm install pm2 -g --depth=0
 RUN npm install npm-cli-login -g --depth=0
 # https://www.npmjs.com/package/npm-cli-login
 
-# setup bash terminal
-RUN curl https://raw.githubusercontent.com/gitnooji/nj-docker-support/master/.bashrc > /root/.bashrc
-
-# creates folder `/server` and uses it as the current working directory
+# set the working directory to the home folder of the 'server' user
 # for all docker commands operating on the container.
-WORKDIR /server
+WORKDIR /home/server
+USER server
+
+# setup bash terminal for user 'server'
+RUN curl https://raw.githubusercontent.com/gitnooji/nj-docker-support/master/.bashrc > .bashrc
 
 # if you want the current filesystem contents statically loaded into
 # the container, enable the COPY command below. you can still mount your
-# local filesystem over the static contents of the `/server` folder
+# local filesystem over the static contents of the '/home/server' folder
 # COPY . .
+
+# alternatively you can use git to pull in the project
+# RUN git clone https://github.com/<USERNAME>/<REPO>.git
 
 # If you have native dependencies, you'll need extra tools
 # RUN apk add --no-cache make gcc g++ python

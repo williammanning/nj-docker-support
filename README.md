@@ -7,9 +7,12 @@ the `.bashrc` file sets up some useful bash shortcuts.
 ## Dockerfile
 the provided `Dockerfile` allows the running of a local node server inside a dockerized 'clean room'
 
-To build the image. (copy the Dockerfile to the root of your project, and `cd` into the project root.) or replace the `.` with the full path to the Dockerfile.
+The `Dockerfile` creates a user called `server` with the home directory of `/home/server`, the server
+will be run as this user.
 
-The docker file contains an `EXPOSE` statement and `CMD` to run the server, these should be changed to reflect the startup
+When deploying in production if is recommended to run with the `--cap-drop=all` option
+
+The `Dockerfile` contains an `EXPOSE` statement and `CMD` to run the server, these should be changed to reflect the startup
 cmdline for your instance.
 
 The default `EXPOSE` command opens some standard development ports for mapping to the client machine.
@@ -23,6 +26,9 @@ The default 'CMD' command starts the server by runnings `npm start`.
  We should try to keep all servers as close to a simple `npm start` if possible.
 
 ### Build the container
+
+To build the image. (copy the Dockerfile to the root of your project, and `cd` into the project root.) or replace the `.` with the full path to the Dockerfile.
+
 ```
 
 $ docker build . -t <PROJECT-NAME>
@@ -69,6 +75,8 @@ $ cd my-dumb-stuff
 $ docker build . -t mds-cleanroom
 $ docker run  -p 3001:3001 -t mds-cleanroom  # runs the container
 $ docker run  -p 3001:3001 -v ${PWD}:/server -it mds-cleanroom # run the container and mounts the current folder
+$ docker run --cap-drop=all -p 3001:3001 -t mds-cleanroom # run the container with reduced host privileges
+
 ```
 
 ### Daemon
