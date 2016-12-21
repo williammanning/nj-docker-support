@@ -22,6 +22,7 @@ The default 'CMD' command starts the server by runnings `npm start`.
 
  We should try to keep all servers as close to a simple `npm start` if possible.
 
+### Build the container
 ```
 
 $ docker build . -t <PROJECT-NAME>
@@ -33,6 +34,7 @@ $ docker build . -t <PROJECT-NAME>
 
 Now you can run an instance of the created container over your local project
 
+### Run the container
 ```
 
 $ docker run  -p <local_port>:<container_port> -v ${PWD}:/server -t <PROJECT-NAME>
@@ -69,6 +71,7 @@ $ docker run  -p 3001:3001 -t mds-cleanroom  # runs the container
 $ docker run  -p 3001:3001 -v ${PWD}:/server -it mds-cleanroom # run the container and mounts the current folder
 ```
 
+### Daemon
 to run as a daemon
 ```
 

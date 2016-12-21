@@ -7,6 +7,18 @@ FROM mhart/alpine-node:6
 
 RUN apk add --no-cache htop bash curl vim nano figlet
 RUN npm install pm2 -g --depth=0
+
+# npm-cli-login supports the following environment varibles.
+# NPM_USER: NPM username
+# NPM_PASS: NPM password
+# NPM_EMAIL: NPM email
+# NPM_REGISTRY: (optional) Private NPM registry to log in to (Default: https://registry.npmjs.org)
+# NPM_SCOPE: (optional) Private NPM scope
+# NPM_RC_PATH: (optional) Path to a custom .npmrc file you want to update (Default: ~/)
+#              (Do note this is the path of the file, not the file itself)
+RUN npm install npm-cli-login -g --depth=0
+# https://www.npmjs.com/package/npm-cli-login
+
 # setup bash terminal
 RUN curl https://raw.githubusercontent.com/gitnooji/nj-docker-support/master/.bashrc > /root/.bashrc
 
