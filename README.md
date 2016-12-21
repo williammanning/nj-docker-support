@@ -74,9 +74,12 @@ copy the `Dockerfile` into the root folder of the project,
 $ cd my-dumb-stuff
 $ docker build . -t mds-cleanroom
 $ docker run  -p 3001:3001 -t mds-cleanroom  # runs the container
-$ docker run  -p 3001:3001 -v ${PWD}:/server -it mds-cleanroom # run the container and mounts the current folder
-$ docker run --cap-drop=all -p 3001:3001 -t mds-cleanroom # run the container with reduced host privileges
 
+$ docker run  -p -p 8000-8002:8000-8002/tcp -v ${PWD}:/server -it mds-cleanroom # mount the current folder, map a range of ports
+
+$ docker run --cap-drop=all -p 3001:3001 -t mds-cleanroom # reduced host privileges
+
+$ docker run  -p 3001:3001 -p:9229:9229 -v ${PWD}:/server -it mds-cleanroom # map the debugger port.
 ```
 
 ### Daemon

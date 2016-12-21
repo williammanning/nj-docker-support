@@ -43,5 +43,11 @@ RUN curl https://raw.githubusercontent.com/gitnooji/nj-docker-support/master/.ba
 # install/config if needed
 # RUN npm install
 
-EXPOSE 3001 3002 8000 8001 8002 8080 8181
+EXPOSE 9229 3001 3002 8000 8001 8002 8080 8181
+# To connect the node engine debugger tools port 9229 is used
+# the project's package.json scripts stanza should contain a start command
+# which invokes the debugger.
+#
+# "start": "node --inspect --debug-brk server.js ",
+#
 CMD ["npm", "start"]
