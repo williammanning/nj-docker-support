@@ -5,7 +5,7 @@ FROM mhart/alpine-node:6
 # 6, 6.9, 6.9.2 – 49.65 MB (npm 3.10.10)
 # 4, 4.7, 4.7.0 – 36.82 MB (npm 2.15.11)
 
-RUN apk add --no-cache htop bash curl vim nano figlet
+RUN apk add --no-cache htop bash curl vim nano figlet git 
 RUN npm install pm2 -g --depth=0
 
 # npm-cli-login supports the following environment varibles.
